@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Exception Logger" %></title>
+    <meta charset="UTF-8" />
+    <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js' %>
+    <%= javascript_include_tag 'exception_logger.js' %>
+    <%= stylesheet_link_tag 'exception_logger'  %>
+    <%= csrf_meta_tag %>
+    
+    <%= auto_discovery_link_tag(:rss, {:action => "feed"}, {:title => "RSS Feed"}) %>
+  </head>
+  <body>
+    <div id="container">
+      <%= yield %>
+    </div>
+    <br style="clear:both" />
+  </body>
+</html>
