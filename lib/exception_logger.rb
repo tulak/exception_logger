@@ -1,5 +1,5 @@
-require "exception_logger/version"
-
+require 'exception_logger/version'
 module ExceptionLogger
-  # Your code goes here...
+   require 'exception_logger/engine' if defined?(Rails) && Rails::VERSION::MAJOR == 3
+   require 'exception_logger/exception_loggable' if defined?(Rails) && Rails::VERSION::MAJOR == 3
 end
