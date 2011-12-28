@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Filip Zachar"]
   s.email       = ["tulak@netspace.sk"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Exception Logger Gem recreated for Rails 3.1}
+  s.description = %q{This is just forked QuBiT/exception_logger gem, and modified to work with Rails 3.1 }
 
   s.rubyforge_project = "exception_logger"
   s.add_dependency "kaminari"
