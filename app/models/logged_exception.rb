@@ -21,9 +21,9 @@ class LoggedException < ActiveRecord::Base
   scope :by_controller_and_action, lambda {|controller_name, action_name| where(:controller_name => controller_name, :action_name => action_name)}
   scope :by_controller, lambda {|controller_name| where(:controller_name => controller_name)}
   scope :by_action, lambda {|action_name| where(:action_name => action_name)}
-  scope :message_like, lambda {|query|  where(:message.matches => "%#{query}%")}
-  scope :days_old, lambda {|day_number| where(:created_at.gteq => day_number.to_f.days.ago.utc)}
-  scope :sorted, order(:created_at.desc)
+  scope :message_like, lambda {|query|  where{message =~ "%#{query}%"}
+  scope :days_old, lambda {|day_number| where{created_at >= day_number.to_f.days.ago.utc}
+  scope :sorted, order("created_at desc")
   
   def name
     "#{self.exception_class} in #{self.controller_action}"
