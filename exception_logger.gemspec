@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "exception_logger"
   s.add_dependency "kaminari"
   s.add_dependency "i18n", ">= 0.4.1"
-  s.add_dependency "squeel", "~> 0.9.3"
+  s.add_dependency "squeel", ">= 1.0"
 
   s.add_dependency 'rails', '>=3.0.0'
 
