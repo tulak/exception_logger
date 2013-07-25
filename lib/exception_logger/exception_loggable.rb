@@ -23,6 +23,8 @@ module ExceptionLogger
   module ExceptionLoggable
     def self.included(target)
       target.extend(ClassMethods)
+      target.class_attribute :local_address
+      target.class_attribute :exception_data
 
       #ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!({
       #    :exc_full => "%A, %b %d, %Y at %l:%M %p",
@@ -37,10 +39,12 @@ module ExceptionLogger
       end
 
       def local_addresses
-        addresses = read_inheritable_attribute(:local_addresses)
+        # addresses = read_inheritable_attribute(:local_addresses)
+        addresses = self.local_addresses
         unless addresses
           addresses = [IPAddr.new("127.0.0.1")]
-          write_inheritable_attribute(:local_addresses, addresses)
+          # write_inheritable_attribute(:local_addresses, addresses)
+          self.local_addresses = addresses
         end
         addresses
       end
@@ -48,9 +52,11 @@ module ExceptionLogger
       def exception_data(deliverer = self, &block)
         deliverer = block if block
         if deliverer == self
-          read_inheritable_attribute(:exception_data)
+          # read_inheritable_attribute(:exception_data)
+          self.exception_data
         else
-          write_inheritable_attribute(:exception_data, deliverer)
+          # write_inheritable_attribute(:exception_data, deliverer)
+          self.exception_data = deliverer
         end
       end
     end
